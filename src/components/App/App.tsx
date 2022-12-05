@@ -37,6 +37,7 @@ function App() {
   }
 
   function switchSection() {
+    setSectionPlaying(false);
     setCurrentSection(history.state.sec);
   }
 

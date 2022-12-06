@@ -11,21 +11,25 @@ function App() {
   const [currentSection, setCurrentSection] = useState(0);
   const [sectionPlaying, setSectionPlaying] = useState(false);
   const [transitionPlaying, setTransitionPlaying] = useState(false);
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     addEventListener("popstate", onHistoryChange);
 
-    const pathSection = [...sections].find(
-      (i) => i[1].path === location.pathname
-    );
+    const pathSec =
+      [...sections].find((i) => i[1].path === location.pathname) ||
+      [...sections][0];
 
     history.replaceState(
-      { sec: pathSection ? pathSection[0] : 0 },
+      {
+        sec: pathSec[0],
+        theme: pathSec[1].theme,
+      },
       "",
-      pathSection ? pathSection[1].path : "/"
+      pathSec[1].path
     );
 
-    if (pathSection) switchSection();
+    switchSection();
 
     return () => {
       removeEventListener("popstate", onHistoryChange);
@@ -39,6 +43,7 @@ function App() {
   function switchSection() {
     setSectionPlaying(false);
     setCurrentSection(history.state.sec);
+    setTheme(history.state.theme);
   }
 
   function playSection() {
@@ -60,7 +65,7 @@ function App() {
         sectionPlaying={sectionPlaying}
       />
 
-      <Nav />
+      <Nav theme={theme} />
       <Loader onFinish={playSection} />
       <SwipeTransition
         transitionPlaying={transitionPlaying}

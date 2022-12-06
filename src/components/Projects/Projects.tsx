@@ -7,12 +7,12 @@ function Projects({
 }) {
   return (
     <section
-      className="absolute inset-0 bg-slate-800 pt-8"
+      className="absolute inset-0 bg-zinc-300 pt-8"
       style={{
         display: currentSection === 1 ? "grid" : "none",
       }}
     >
-      <h2 className="text-slate-100 text-4xl m-8">PROJECTS</h2>
+      <h2 className="text-zinc-600 text-4xl m-8">PROJECTS</h2>
     </section>
   );
 }

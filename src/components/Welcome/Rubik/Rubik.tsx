@@ -5,7 +5,7 @@ import { Group, Mesh } from "three";
 
 function Rubik({ play }: { play: boolean }) {
   return (
-    <div className="absolute w-full h-full md:z-10">
+    <div className="absolute inset-0 md:z-10">
       <Canvas>
         <CameraConfig />
         <ambientLight />
@@ -108,15 +108,18 @@ function CameraConfig() {
       const camera = threeState().camera;
       const { width: w, height: h } = threeState().size;
 
-      // Adjust camera FOV using width instead of height
+      // Adjust camera FOV using width and height
       if ("fov" in camera) {
         camera.aspect = w / h;
 
         const hfov = 40;
+        const minFov = 20;
 
-        camera.fov =
+        camera.fov = Math.max(
+          minFov,
           (Math.atan(Math.tan((hfov * Math.PI) / 360) / camera.aspect) * 360) /
-          Math.PI;
+            Math.PI
+        );
 
         camera.updateProjectionMatrix();
       }

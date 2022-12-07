@@ -4,6 +4,52 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Archivo SemiExpanded";
+  src: url("@/assets/fonts/Archivo_SemiExpanded/Archivo_SemiExpanded-Thin.ttf");
+  font-weight: 100;
+}
+@font-face {
+  font-family: "Archivo SemiExpanded";
+  src: url("@/assets/fonts/Archivo_SemiExpanded/Archivo_SemiExpanded-ExtraLight.ttf");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Archivo SemiExpanded";
+  src: url("@/assets/fonts/Archivo_SemiExpanded/Archivo_SemiExpanded-Light.ttf");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Archivo SemiExpanded";
+  src: url("@/assets/fonts/Archivo_SemiExpanded/Archivo_SemiExpanded-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Archivo SemiExpanded";
+  src: url("@/assets/fonts/Archivo_SemiExpanded/Archivo_SemiExpanded-Medium.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Archivo SemiExpanded";
+  src: url("@/assets/fonts/Archivo_SemiExpanded/Archivo_SemiExpanded-SemiBold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "Archivo SemiExpanded";
+  src: url("@/assets/fonts/Archivo_SemiExpanded/Archivo_SemiExpanded-Bold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Archivo SemiExpanded";
+  src: url("@/assets/fonts/Archivo_SemiExpanded/Archivo_SemiExpanded-ExtraBold.ttf");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "Archivo SemiExpanded";
+  src: url("@/assets/fonts/Archivo_SemiExpanded/Archivo_SemiExpanded-Black.ttf");
+  font-weight: 900;
+}
+
 /* :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;

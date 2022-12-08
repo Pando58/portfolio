@@ -18,19 +18,19 @@ function Welcome({
   }, [currentSection, sectionPlaying]);
 
   useLayoutEffect(() => {
-    // Reset animations if not playing
-    if (!play) {
-      gsap.set("span", {
-        y: "100%",
-      });
-
-      setPlayRubik(false);
-
-      return;
-    }
-
-    // Main animation
     const ctx = gsap.context(() => {
+      // Reset animations if not playing
+      if (!play) {
+        gsap.set("span", {
+          y: "100%",
+        });
+
+        setPlayRubik(false);
+
+        return;
+      }
+
+      // Main animation
       gsap.fromTo(
         "span",
         {

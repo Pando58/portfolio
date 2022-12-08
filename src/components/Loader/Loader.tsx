@@ -3,12 +3,15 @@ import { useLayoutEffect, useRef, useState } from "react";
 
 function Loader({ onFinish }: { onFinish: () => void }) {
   const [active, setActive] = useState(true);
+  const [percent, setPercent] = useState(0);
   const mainContainer = useRef<HTMLDivElement>(null!);
   const shapesContainer = useRef<HTMLDivElement>(null!);
   const squaresContainer = useRef<HTMLDivElement>(null!);
   const tlRef = useRef<gsap.core.Timeline>(null!);
 
   useLayoutEffect(() => {
+    const loadingTime = 3 + Math.random() * 0.5;
+
     const ctx = gsap.context(() => {
       tlRef.current = gsap.timeline({ repeat: -1, delay: 0.5 });
 
@@ -20,6 +23,18 @@ function Loader({ onFinish }: { onFinish: () => void }) {
         delay: 0.5,
         ease: Power4.easeOut,
         opacity: 0,
+      });
+
+      const percentObj = { val: 0 };
+
+      gsap.to(percentObj, {
+        val: 100,
+        duration: loadingTime - 0.6,
+        delay: 0.5,
+        ease: "none",
+        onUpdate: () => {
+          setPercent(percentObj.val | 0);
+        },
       });
 
       const squares = gsap.utils.toArray<HTMLDivElement>(".loading-square");
@@ -49,10 +64,7 @@ function Loader({ onFinish }: { onFinish: () => void }) {
       }
     }, squaresContainer);
 
-    const finish = setTimeout(
-      triggerFinishLoading,
-      3000 + Math.random() * 1000
-    );
+    const finish = setTimeout(triggerFinishLoading, loadingTime * 1000);
 
     return () => {
       ctx.revert();
@@ -110,8 +122,8 @@ function Loader({ onFinish }: { onFinish: () => void }) {
               <Square key={i} />
             ))}
           </div>
-          <h4 className="text-center font-bold text-zinc-700 border-zinc-700 my-2 pt-1">
-            LOADING...
+          <h4 className="text-center font-bold font-sans-semiexpanded text-zinc-700 border-zinc-700 my-2 pt-1">
+            {percent}%
           </h4>
         </div>
       </div>

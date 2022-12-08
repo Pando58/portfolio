@@ -36,7 +36,7 @@ function Projects({
     return () => {
       removeEventListener("resize", updateSlideOffset);
     };
-  }, [swiper]);
+  }, [currentSection]);
 
   useEffect(() => {
     const scroll = ({ deltaY }: WheelEvent) => {

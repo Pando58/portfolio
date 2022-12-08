@@ -1,6 +1,10 @@
 import { PerspectiveCamera } from "@react-three/drei";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
+import { Swiper as Swiper_ } from "swiper";
+import "swiper/css";
+import "swiper/css/virtual";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Mesh, PerspectiveCamera as ThreePerspectiveCamera } from "three";
 
 function Projects({
@@ -10,6 +14,48 @@ function Projects({
   currentSection: number;
   sectionPlaying: boolean;
 }) {
+  const [slideOffset, setSlideOffset] = useState(0);
+  const [swiper, setSwiper] = useState<Swiper_>(null!);
+  const mainContainerRef = useRef<HTMLDivElement>(null!);
+  const swiperContainerRef = useRef<HTMLDivElement>(null!);
+
+  useEffect(() => {
+    const updateSlideOffset = () => {
+      const container = swiperContainerRef.current;
+
+      const { innerWidth: w, innerHeight: h } = window;
+
+      const { left, right } = container.getBoundingClientRect();
+
+      setSlideOffset((w - (right - left)) / 4);
+    };
+
+    updateSlideOffset();
+    addEventListener("resize", updateSlideOffset);
+
+    return () => {
+      removeEventListener("resize", updateSlideOffset);
+    };
+  }, [swiper]);
+
+  useEffect(() => {
+    const scroll = ({ deltaY }: WheelEvent) => {
+      if (deltaY > 0) {
+        swiper.slideNext();
+      } else {
+        swiper.slidePrev();
+      }
+    };
+
+    const container = mainContainerRef.current;
+
+    container.addEventListener("wheel", scroll);
+
+    return () => {
+      container.removeEventListener("wheel", scroll);
+    };
+  }, [swiper]);
+
   return (
     <section
       className="absolute inset-0 bg-zinc-300"
@@ -30,12 +76,38 @@ function Projects({
         </div>
 
         <div
-          className="relative"
+          ref={mainContainerRef}
+          className="relative overflow-hidden"
           style={{
-            paddingBottom: "min(45%, 60vh)" /* Simulate 3d scene spacing */,
+            paddingBottom: "min(42%, 58vh)" /* Simulate 3d scene spacing */,
           }}
         >
-          {/*  */}
+          <div
+            ref={swiperContainerRef}
+            className="absolute inset-y-0"
+            style={{
+              left: "max(22%, calc(50vw - 38vh))",
+              right: "max(22%, calc(50vw - 38vh))",
+            }}
+          >
+            <Swiper
+              className="h-full overflow-visible"
+              // modules={[Virtual]}
+              // virtual
+              spaceBetween={slideOffset}
+              slidesPerView={1}
+              onAfterInit={(s) => setSwiper(s)}
+            >
+              {[...Array(10)].map((_, i) => (
+                <SwiperSlide
+                  className="bg-neutral-400 bg-opacity-50"
+                  virtualIndex={i}
+                  key={i}
+                  onClick={() => console.log(i)}
+                ></SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
         </div>
 
         <div className="flex-1">
@@ -84,14 +156,6 @@ function Scene() {
       removeEventListener("resize", updateCamera);
     };
   }, []);
-
-  const [count, setCount] = useState(0);
-
-  useFrame(() => {
-    example.current.rotation.y = Math.cos(count * 0.03) * 0.4;
-
-    setCount((i) => i + 1);
-  });
 
   return (
     <>

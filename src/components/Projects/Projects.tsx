@@ -1,6 +1,7 @@
 import { PerspectiveCamera } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { Expo, gsap } from "gsap";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Swiper as Swiper_ } from "swiper";
 import "swiper/css";
 import "swiper/css/virtual";
@@ -16,8 +17,47 @@ function Projects({
 }) {
   const [slideOffset, setSlideOffset] = useState(0);
   const [swiper, setSwiper] = useState<Swiper_>(null!);
+  const [play, setPlay] = useState(false);
+  const [playScene, setPlayScene] = useState(false);
   const mainContainerRef = useRef<HTMLDivElement>(null!);
+  const spacingContainerRef = useRef<HTMLDivElement>(null!);
   const swiperContainerRef = useRef<HTMLDivElement>(null!);
+
+  useEffect(() => {
+    setPlay(sectionPlaying && currentSection === 1);
+  }, [currentSection, sectionPlaying]);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Reset
+      if (!play) {
+        gsap.set("h2 span[data-anim]", {
+          y: "100%",
+        });
+
+        setPlayScene(false);
+
+        return;
+      }
+      // Play
+      gsap.fromTo(
+        "h2 span[data-anim]",
+        {
+          y: "95%",
+        },
+        {
+          duration: 1,
+          stagger: 0.3,
+          ease: Expo.easeInOut,
+          y: 0,
+        }
+      );
+
+      gsap.delayedCall(0.5, () => setPlayScene(true));
+    }, mainContainerRef);
+
+    return () => ctx.revert();
+  }, [play]);
 
   useEffect(() => {
     const updateSlideOffset = () => {
@@ -65,18 +105,20 @@ function Projects({
     >
       <div className="absolute inset-0">
         <Canvas>
-          <Scene />
+          <Scene play={playScene} />
         </Canvas>
       </div>
-      <div className="flex flex-col h-full">
-        <div className="flex-1">
-          <h2 className="text-zinc-600 text-4xl mt-16 text-center font-sans-semiexpanded">
-            PROJECTS
+      <div ref={mainContainerRef} className="flex flex-col h-full">
+        <div className="flex-1 text-center">
+          <h2 className="overflow-hidden text-zinc-600 text-4xl mt-16 font-sans-semiexpanded">
+            <span className="inline-block" data-anim>
+              PROJECTS
+            </span>
           </h2>
         </div>
 
         <div
-          ref={mainContainerRef}
+          ref={spacingContainerRef}
           className="relative overflow-hidden"
           style={{
             paddingBottom: "min(42%, 58vh)" /* Simulate 3d scene spacing */,
@@ -111,8 +153,10 @@ function Projects({
         </div>
 
         <div className="flex-1">
-          <h2 className="text-zinc-800 font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-12 text-center">
-            Osmium
+          <h2 className="overflow-hidden text-zinc-800 font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl mt-12 text-center">
+            <span className="inline-block" data-anim>
+              Osmium
+            </span>
           </h2>
         </div>
       </div>
@@ -122,7 +166,7 @@ function Projects({
 
 export default Projects;
 
-function Scene() {
+function Scene({ play }: { play: boolean }) {
   const threeState = useThree((state) => state.get);
   const cameraRef = useRef<ThreePerspectiveCamera>(null!);
   const example = useRef<Mesh>(null!);
@@ -157,6 +201,22 @@ function Scene() {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    if (!play) return;
+
+    const ctx = gsap.context(() => {
+      gsap.to(example.current.scale, {
+        duration: 1,
+        ease: Expo.easeOut,
+        x: 1,
+        y: 1,
+        z: 1,
+      });
+    });
+
+    return () => ctx.revert();
+  }, [play]);
+
   return (
     <>
       <PerspectiveCamera
@@ -165,7 +225,7 @@ function Scene() {
         fov={40}
         position={[0, 0, 4]}
       />
-      <mesh rotation={[0, 0, 0]} ref={example}>
+      <mesh ref={example} scale={0}>
         <boxGeometry args={[1.6, 1.2, 0.05]} />
         <meshNormalMaterial />
       </mesh>

@@ -1,11 +1,9 @@
 import { PerspectiveCamera } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
+import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css/core";
 import { Expo, gsap } from "gsap";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Swiper as Swiper_ } from "swiper";
-import "swiper/css";
-import "swiper/css/virtual";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Mesh, PerspectiveCamera as ThreePerspectiveCamera } from "three";
 
 function Projects({
@@ -15,13 +13,10 @@ function Projects({
   currentSection: number;
   sectionPlaying: boolean;
 }) {
-  const [slideOffset, setSlideOffset] = useState(0);
-  const [swiper, setSwiper] = useState<Swiper_>(null!);
   const [play, setPlay] = useState(false);
   const [playScene, setPlayScene] = useState(false);
+  const splideRef = useRef<Splide>(null!);
   const mainContainerRef = useRef<HTMLDivElement>(null!);
-  const spacingContainerRef = useRef<HTMLDivElement>(null!);
-  const swiperContainerRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
     setPlay(sectionPlaying && currentSection === 1);
@@ -39,6 +34,7 @@ function Projects({
 
         return;
       }
+
       // Play
       gsap.fromTo(
         "h2 span[data-anim]",
@@ -56,45 +52,10 @@ function Projects({
       gsap.delayedCall(0.5, () => setPlayScene(true));
     }, mainContainerRef);
 
+    splideRef.current.splide?.go(0);
+
     return () => ctx.revert();
   }, [play]);
-
-  useEffect(() => {
-    const updateSlideOffset = () => {
-      const container = swiperContainerRef.current;
-
-      const { innerWidth: w, innerHeight: h } = window;
-
-      const { left, right } = container.getBoundingClientRect();
-
-      setSlideOffset((w - (right - left)) / 4);
-    };
-
-    updateSlideOffset();
-    addEventListener("resize", updateSlideOffset);
-
-    return () => {
-      removeEventListener("resize", updateSlideOffset);
-    };
-  }, [currentSection]);
-
-  useEffect(() => {
-    const scroll = ({ deltaY }: WheelEvent) => {
-      if (deltaY > 0) {
-        swiper.slideNext();
-      } else {
-        swiper.slidePrev();
-      }
-    };
-
-    const container = mainContainerRef.current;
-
-    container.addEventListener("wheel", scroll);
-
-    return () => {
-      container.removeEventListener("wheel", scroll);
-    };
-  }, [swiper]);
 
   return (
     <section
@@ -118,37 +79,38 @@ function Projects({
         </div>
 
         <div
-          ref={spacingContainerRef}
           className="relative overflow-hidden"
           style={{
             paddingBottom: "min(42%, 58vh)" /* Simulate 3d scene spacing */,
           }}
         >
-          <div
-            ref={swiperContainerRef}
-            className="absolute inset-y-0"
-            style={{
-              left: "max(22%, calc(50vw - 38vh))",
-              right: "max(22%, calc(50vw - 38vh))",
-            }}
-          >
-            <Swiper
-              className="h-full overflow-visible"
-              // modules={[Virtual]}
-              // virtual
-              spaceBetween={slideOffset}
-              slidesPerView={1}
-              onAfterInit={(s) => setSwiper(s)}
+          <div className="absolute inset-0">
+            <Splide
+              ref={splideRef}
+              className="h-full"
+              hasTrack={false}
+              options={{
+                // perPage: 3,
+                fixedWidth: "min(56%, 76vh)",
+                gap: "max(11%, calc(25vw - 19vh))",
+                focus: "center",
+                trimSpace: false,
+                updateOnMove: true,
+                wheel: true,
+                pagination: false,
+                arrows: false,
+              }}
+              aria-label="Projects"
             >
-              {[...Array(10)].map((_, i) => (
-                <SwiperSlide
-                  className="bg-neutral-400 bg-opacity-50"
-                  virtualIndex={i}
-                  key={i}
-                  onClick={() => console.log(i)}
-                ></SwiperSlide>
-              ))}
-            </Swiper>
+              <SplideTrack className="h-full">
+                {[...Array(10)].map((_, i) => (
+                  <SplideSlide
+                    className="bg-neutral-400 bg-opacity-40"
+                    key={i}
+                  />
+                ))}
+              </SplideTrack>
+            </Splide>
           </div>
         </div>
 

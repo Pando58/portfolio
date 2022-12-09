@@ -29,17 +29,13 @@ function Cube({ play }: { play: boolean }) {
     if (!play) return;
 
     const ctx = gsap.context(() => {
-      gsap.to(
-        introAnim.current.scale,
-
-        {
-          duration: 2,
-          ease: Expo.easeOut,
-          x: 1,
-          y: 1,
-          z: 1,
-        }
-      );
+      gsap.to(introAnim.current.scale, {
+        duration: 2,
+        ease: Expo.easeOut,
+        x: 1,
+        y: 1,
+        z: 1,
+      });
 
       gsap.to(introAnim.current.rotation, {
         duration: 2,

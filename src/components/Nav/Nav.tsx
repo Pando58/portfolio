@@ -1,4 +1,5 @@
 import { sections } from "../../data/sectionRoutes";
+import NavEntry from "./NavEntry";
 
 function Nav({ theme }: { theme: string }) {
   return (
@@ -14,9 +15,9 @@ function Nav({ theme }: { theme: string }) {
         }}
       >
         {[...sections].map(([id, { path, name, theme }]) => (
-          <Entry sec={id} path={path} theme={theme} key={id}>
+          <NavEntry sec={id} path={path} theme={theme} key={id}>
             {name}
-          </Entry>
+          </NavEntry>
         ))}
       </div>
     </div>
@@ -24,30 +25,3 @@ function Nav({ theme }: { theme: string }) {
 }
 
 export default Nav;
-
-function Entry({
-  sec,
-  path,
-  theme,
-  children,
-}: {
-  sec: number;
-  path: string;
-  theme: string;
-  children: JSX.Element | string;
-}) {
-  function onClick(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-    e.preventDefault();
-
-    const state = { sec, theme };
-
-    history.pushState(state, "", path);
-    dispatchEvent(new PopStateEvent("popstate", { state }));
-  }
-
-  return (
-    <a onClick={onClick} href={path}>
-      {children}
-    </a>
-  );
-}

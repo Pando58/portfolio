@@ -1,5 +1,5 @@
-import { gsap, Power3 } from "gsap";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { useWelcomeAnimation } from "./hooks/useWelcomeAnimation";
 import Rubik from "./Rubik";
 
 function Welcome({
@@ -9,46 +9,13 @@ function Welcome({
   currentSection: number;
   sectionPlaying: boolean;
 }) {
-  const [play, setPlay] = useState(false);
-  const [playRubik, setPlayRubik] = useState(false);
   const titlesContainer = useRef<HTMLDivElement>(null!);
 
-  useEffect(() => {
-    setPlay(sectionPlaying && currentSection === 0);
-  }, [currentSection, sectionPlaying]);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Reset animations if not playing
-      if (!play) {
-        gsap.set("span", {
-          y: "100%",
-        });
-
-        setPlayRubik(false);
-
-        return;
-      }
-
-      // Main animation
-      gsap.fromTo(
-        "span",
-        {
-          y: "100%",
-        },
-        {
-          duration: 1,
-          stagger: 0.2,
-          ease: Power3.easeInOut,
-          y: 0,
-        }
-      );
-
-      gsap.delayedCall(0.7, () => setPlayRubik(true));
-    }, titlesContainer);
-
-    return () => ctx.revert();
-  }, [play]);
+  const { playRubik } = useWelcomeAnimation(
+    currentSection,
+    sectionPlaying,
+    titlesContainer
+  );
 
   return (
     <section

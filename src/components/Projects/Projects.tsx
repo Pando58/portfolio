@@ -52,7 +52,12 @@ function Projects({
       gsap.delayedCall(0.5, () => setPlayScene(true));
     }, mainContainerRef);
 
-    splideRef.current.splide?.go(0);
+    const splide = splideRef.current?.splide;
+
+    if (splide) {
+      splide.go(0);
+      splide.refresh();
+    }
 
     return () => ctx.revert();
   }, [play]);

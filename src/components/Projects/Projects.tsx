@@ -32,7 +32,7 @@ function Projects({
     >
       <div className="absolute inset-0">
         <Canvas>
-          <ProjectsThreeScene play={playScene} />
+          <ProjectsThreeScene splideRef={splideRef} play={playScene} />
         </Canvas>
       </div>
       <div ref={mainContainerRef} className="flex flex-col h-full">

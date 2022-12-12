@@ -33,7 +33,7 @@ function ProjectsSlider({
         >
           <SplideTrack className="h-full">
             {[...Array(10)].map((_, i) => (
-              <SplideSlide className="bg-neutral-400 bg-opacity-40" key={i} />
+              <SplideSlide key={i} />
             ))}
           </SplideTrack>
         </Splide>

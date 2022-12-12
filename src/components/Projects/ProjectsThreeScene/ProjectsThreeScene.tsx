@@ -1,37 +1,45 @@
 import { useResponsiveCameraFOV } from "@/components/hooks/useResponsiveCameraFOV";
 import { PerspectiveCamera } from "@react-three/drei";
-import { Expo, gsap } from "gsap";
-import { useLayoutEffect, useRef } from "react";
+import { Splide } from "@splidejs/react-splide";
+import { MutableRefObject, useMemo, useRef } from "react";
 import { Mesh } from "three";
+import { useSlidersIntroAnimation } from "./hooks/useSlidersIntroAnimation";
+import { useSyncThreeSliders } from "./hooks/useSyncThreeSliders";
 
-function ProjectsThreeScene({ play }: { play: boolean }) {
-  const example = useRef<Mesh>(null!);
+function ProjectsThreeScene({
+  splideRef,
+  play,
+}: {
+  splideRef: MutableRefObject<Splide>;
+  play: boolean;
+}) {
+  const cameraDistance = 4;
+
+  const slideMeshes = useRef<Mesh[]>([]);
 
   useResponsiveCameraFOV(40, 30);
+  useSyncThreeSliders(cameraDistance, splideRef, slideMeshes);
+  useSlidersIntroAnimation(play, slideMeshes);
 
-  useLayoutEffect(() => {
-    if (!play) return;
+  const slides = useMemo(() => {
+    return splideRef.current.splide?.Components.Slides.get() || [];
+  }, []);
 
-    const ctx = gsap.context(() => {
-      gsap.to(example.current.scale, {
-        duration: 1,
-        ease: Expo.easeOut,
-        x: 1,
-        y: 1,
-        z: 1,
-      });
-    });
+  function addSlideMeshesRef(el: Mesh | null, index: number) {
+    if (!el) return;
 
-    return () => ctx.revert();
-  }, [play]);
+    slideMeshes.current[index] = el;
+  }
 
   return (
     <>
-      <PerspectiveCamera makeDefault fov={40} position={[0, 0, 4]} />
-      <mesh ref={example} scale={0}>
-        <boxGeometry args={[1.6, 1.2, 0.05]} />
-        <meshNormalMaterial />
-      </mesh>
+      <PerspectiveCamera makeDefault position={[0, 0, cameraDistance]} />
+      {slides.map((_slide, i) => (
+        <mesh ref={(el) => addSlideMeshesRef(el, i)} key={i}>
+          <boxGeometry args={[1.6, 1.2, 0.05]} />
+          <meshNormalMaterial />
+        </mesh>
+      ))}
     </>
   );
 }

@@ -8,7 +8,7 @@ export function useProjectsAnimation(
   splideRef: MutableRefObject<Splide>,
   mainContainerRef: MutableRefObject<HTMLDivElement>
 ) {
-  const [playScene, setPlayScene] = useState(false);
+  const [playThreeScene, setPlayThreeScene] = useState(false);
 
   const play = useMemo(() => {
     return sectionPlaying && currentSection === 1;
@@ -18,18 +18,19 @@ export function useProjectsAnimation(
     const ctx = gsap.context(() => {
       // Reset
       if (!play) {
-        gsap.set("h2 span[data-anim]", {
-          y: "100%",
-        });
-
-        setPlayScene(false);
+        setPlayThreeScene(false);
 
         return;
       }
 
       // Play
+
+      gsap.set("h2 span[data-anim-first]", {
+        y: "-100%",
+      });
+
       gsap.fromTo(
-        "h2 span[data-anim]",
+        "h2 span[data-anim-intro]",
         {
           y: "95%",
         },
@@ -41,7 +42,7 @@ export function useProjectsAnimation(
         }
       );
 
-      gsap.delayedCall(0.5, () => setPlayScene(true));
+      gsap.delayedCall(0.5, () => setPlayThreeScene(true));
     }, mainContainerRef);
 
     const splide = splideRef.current?.splide;
@@ -54,5 +55,5 @@ export function useProjectsAnimation(
     return () => ctx.revert();
   }, [play]);
 
-  return { playScene };
+  return { play, playThreeScene };
 }

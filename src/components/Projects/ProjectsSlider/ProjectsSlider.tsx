@@ -1,10 +1,13 @@
+import { projectList } from "@/data/projectList";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import { MutableRefObject } from "react";
 
 function ProjectsSlider({
   splideRef,
+  onChange,
 }: {
   splideRef: MutableRefObject<Splide>;
+  onChange: (index: number) => void;
 }) {
   return (
     <div
@@ -18,6 +21,7 @@ function ProjectsSlider({
           ref={splideRef}
           className="h-full"
           hasTrack={false}
+          onMove={(s) => onChange(s.index)}
           options={{
             // perPage: 3,
             fixedWidth: "min(56%, 76vh)",
@@ -32,7 +36,7 @@ function ProjectsSlider({
           aria-label="Projects"
         >
           <SplideTrack className="h-full">
-            {[...Array(10)].map((_, i) => (
+            {projectList.map((_, i) => (
               <SplideSlide key={i} />
             ))}
           </SplideTrack>

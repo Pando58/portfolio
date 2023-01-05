@@ -5,10 +5,24 @@ import { MutableRefObject } from "react";
 function ProjectsSlider({
   splideRef,
   onChange,
+  onClickSlide,
 }: {
   splideRef: MutableRefObject<Splide>;
   onChange: (index: number) => void;
+  onClickSlide: (index: number) => void;
 }) {
+  function onSlideClick(index: number) {
+    const splide = splideRef.current.splide;
+
+    if (!splide) return;
+
+    if (index !== splide.index) {
+      splide.go(index);
+    } else {
+      onClickSlide(index);
+    }
+  }
+
   return (
     <div
       className="relative overflow-hidden"
@@ -37,7 +51,7 @@ function ProjectsSlider({
         >
           <SplideTrack className="h-full">
             {projectList.map((_, i) => (
-              <SplideSlide key={i} />
+              <SplideSlide onClick={() => onSlideClick(i)} key={i} />
             ))}
           </SplideTrack>
         </Splide>

@@ -27,6 +27,10 @@ function Projects({
 
   const { activeProject, onSliderChange } = useSliderChange();
 
+  function onClickSlide(i: number) {
+    console.log(i);
+  }
+
   return (
     <section
       className="absolute inset-0 bg-zinc-300"
@@ -48,7 +52,11 @@ function Projects({
           </h2>
         </div>
 
-        <ProjectsSlider splideRef={splideRef} onChange={onSliderChange} />
+        <ProjectsSlider
+          splideRef={splideRef}
+          onChange={onSliderChange}
+          onClickSlide={onClickSlide}
+        />
 
         <div className="flex-1">
           <ProjectName activeProject={activeProject} play={play} />

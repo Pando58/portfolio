@@ -3,10 +3,11 @@ import { Splide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css/core";
 import { useRef } from "react";
 import { useProjectsAnimation } from "./hooks/useProjectsAnimation";
+import { useSelectedProject } from "./hooks/useSelectedProject";
 import { useSliderChange } from "./hooks/useSliderChange";
-import ProjectName from "./ProjectName/ProjectName";
-import ProjectsSlider from "./ProjectsSlider/ProjectsSlider";
 import ProjectsThreeScene from "./ProjectsThreeScene";
+import ProjectView from "./ProjectView/ProjectView";
+import SliderView from "./SliderView";
 
 function Projects({
   currentSection,
@@ -27,8 +28,15 @@ function Projects({
 
   const { activeProject, onSliderChange } = useSliderChange();
 
+  const {
+    selectedProject,
+    selectedProjectIndex,
+    lastSelectedProject,
+    selectProject,
+  } = useSelectedProject();
+
   function onClickSlide(i: number) {
-    console.log(i);
+    selectProject(i);
   }
 
   return (
@@ -40,28 +48,30 @@ function Projects({
     >
       <div className="absolute inset-0">
         <Canvas>
-          <ProjectsThreeScene splideRef={splideRef} play={playThreeScene} />
+          <ProjectsThreeScene
+            splideRef={splideRef}
+            play={playThreeScene}
+            selectedProject={selectedProject}
+            selectedProjectIndex={selectedProjectIndex}
+          />
         </Canvas>
       </div>
-      <div ref={mainContainerRef} className="flex flex-col h-full">
-        <div className="flex-1 text-center">
-          <h2 className="overflow-hidden text-zinc-600 text-4xl mt-16 font-sans-semiexpanded">
-            <span className="inline-block" data-anim-intro>
-              PROJECTS
-            </span>
-          </h2>
-        </div>
 
-        <ProjectsSlider
-          splideRef={splideRef}
-          onChange={onSliderChange}
-          onClickSlide={onClickSlide}
-        />
+      <SliderView
+        mainContainerRef={mainContainerRef}
+        splideRef={splideRef}
+        onSliderChange={onSliderChange}
+        onClickSlide={onClickSlide}
+        activeProject={activeProject}
+        play={play}
+        selectedProject={selectedProject}
+      />
 
-        <div className="flex-1">
-          <ProjectName activeProject={activeProject} play={play} />
-        </div>
-      </div>
+      <ProjectView
+        project={lastSelectedProject}
+        projectVisible={!!selectedProject}
+        selectProject={selectProject}
+      />
     </section>
   );
 }

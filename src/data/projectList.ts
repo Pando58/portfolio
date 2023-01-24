@@ -2,26 +2,31 @@ export const projectList: ProjectProps[] = [
   {
     name: "Osmium",
     description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Necessitatibus minima odio eum libero id optio repellendus facilis perferendis enim maxime, vitae natus animi qui! Quas quos ipsa accusamus expedita asperiores, velit porro, ratione odio qui necessitatibus, repellat debitis eaque cupiditate.",
+      "Application for composing procedural polyrhythmic music, making use of connected nodes in a graph editor, and playing their output by placing the graphs on a timeline.",
+    repo_url: "https://github.com/Pando58/osmium",
   },
   {
     name: "UAE Evaluation Platform",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sed laborum, esse distinctio beatae voluptatum similique eaque labore voluptates mollitia, eum saepe suscipit molestiae adipisci, in magnam facere doloremque incidunt consequatur vitae rerum. Id reiciendis repellat, necessitatibus, blanditiis iure ea at beatae magnam suscipit doloremque deserunt.",
+      "An evaluation system for <a href='https://unialvaedison.edu.mx/' target='_blank' class='text-sky-700 italic'>Universidad Alva Edison</a> where students qualify teachers and administrative staff in different categories, in order to analyze the data and improve the quality of the institution.",
+    repo_url: "https://github.com/Pando58/uaeval",
   },
   {
     name: "Guitar Trainer",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime quasi reiciendis deserunt ea sit, unde debitis quam sapiente, similique nulla error officiis placeat. Sapiente totam voluptates animi fuga ad quo.",
+      "Application for learning music intervals, showing them randomly but in same amounts, and scrolling each given time.",
+    repo_url: "https://github.com/Pando58/guitar-trainer",
   },
   {
     name: "Portfolio",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut deleniti nihil neque praesentium soluta eius dignissimos delectus laboriosam sed. Provident earum officiis laboriosam quos. Exercitationem.",
+      "My personal portfolio website, featuring animations and 3D elements.",
+    repo_url: "https://github.com/Pando58/portfolio",
   },
 ];
 
 export interface ProjectProps {
   name: string;
   description: string;
+  repo_url: string;
 }

@@ -33,7 +33,7 @@ function Projects({
     selectedProjectIndex,
     lastSelectedProject,
     selectProject,
-  } = useSelectedProject();
+  } = useSelectedProject(play);
 
   function onClickSlide(i: number) {
     selectProject(i);

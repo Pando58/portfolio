@@ -44,8 +44,6 @@ function ProjectsThreeScene({
 
   // Project selection animation
   useEffect(() => {
-    if (!play) return;
-
     const scales = slideMeshes.current.map((mesh) => mesh.scale);
     delete scales[selectedProjectIndex];
 
@@ -56,7 +54,7 @@ function ProjectsThreeScene({
       set rotation(a: number) {
         camera.setRotationFromAxisAngle(
           new Vector3(0, 1, 0),
-          (camAngle * Math.PI) / 180
+          (a * Math.PI) / 180
         );
 
         camAngle = a;
@@ -71,6 +69,13 @@ function ProjectsThreeScene({
         return camera.view?.offsetY || 0;
       },
     };
+
+    if (!play) {
+      cameraUpdater.rotation = 0;
+      cameraUpdater.offsetY = 0;
+
+      return;
+    }
 
     if (selectedProject) {
       gsap.to(scales, {

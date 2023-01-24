@@ -1,7 +1,7 @@
 import { projectList, ProjectProps } from "@/data/projectList";
-import { useCallback, useState } from "react";
+import { useCallback, useLayoutEffect, useState } from "react";
 
-export function useSelectedProject() {
+export function useSelectedProject(play: boolean) {
   const [selectedProject, setSelectedProject] = useState<ProjectProps | null>(
     null
   );
@@ -20,6 +20,10 @@ export function useSelectedProject() {
     setSelectedProject(proj);
     if (proj) setLastSelectedProject(proj);
   }, []);
+
+  useLayoutEffect(() => {
+    selectProject(-1);
+  }, [play]);
 
   return {
     selectedProject,

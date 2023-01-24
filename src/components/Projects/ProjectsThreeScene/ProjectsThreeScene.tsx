@@ -44,6 +44,8 @@ function ProjectsThreeScene({
 
   // Project selection animation
   useEffect(() => {
+    if (!play) return;
+
     const scales = slideMeshes.current.map((mesh) => mesh.scale);
     delete scales[selectedProjectIndex];
 

@@ -4,6 +4,7 @@ import { PerspectiveCamera } from "@react-three/drei";
 import { Splide } from "@splidejs/react-splide";
 import { MutableRefObject, useMemo, useRef } from "react";
 import { Mesh } from "three";
+import { useProjectMouseAnimation } from "./hooks/useProjectMouseAnimation";
 import { useProjectSelectionAnimation } from "./hooks/useProjectSelectionAnimation";
 import { useSlidersIntroAnimation } from "./hooks/useSlidersIntroAnimation";
 import { useSyncThreeSliders } from "./hooks/useSyncThreeSliders";
@@ -32,6 +33,7 @@ function ProjectsThreeScene({
     selectedProject,
     selectedProjectIndex
   );
+  useProjectMouseAnimation(slideMeshes, selectedProject, selectedProjectIndex);
 
   const slides = useMemo(() => {
     return splideRef.current.splide?.Components.Slides.get() || [];
@@ -47,10 +49,12 @@ function ProjectsThreeScene({
     <>
       <PerspectiveCamera makeDefault position={[0, 0, cameraDistance]} />
       {slides.map((_slide, i) => (
-        <mesh ref={(el) => addSlideMeshesRef(el, i)} key={i}>
-          <boxGeometry args={[1.6, 1.2, 0.05]} />
-          <meshNormalMaterial />
-        </mesh>
+        <group key={i}>
+          <mesh ref={(el) => addSlideMeshesRef(el, i)}>
+            <boxGeometry args={[1.6, 1.2, 0.05]} />
+            <meshNormalMaterial />
+          </mesh>
+        </group>
       ))}
     </>
   );

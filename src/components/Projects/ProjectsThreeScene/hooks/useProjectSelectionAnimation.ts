@@ -3,9 +3,7 @@ import { Mesh, Vector3 } from "three";
 
 import { ProjectProps } from "@/data/projectList";
 import { useThree } from "@react-three/fiber";
-import { MutableRefObject, useEffect } from "react";
-
-let camAngle = 0;
+import { MutableRefObject, useEffect, useMemo } from "react";
 
 export function useProjectSelectionAnimation(
   play: boolean,
@@ -14,6 +12,13 @@ export function useProjectSelectionAnimation(
   selectedProjectIndex: number
 ) {
   const threeState = useThree((state) => state.get);
+
+  const camAngle = useMemo(
+    () => ({
+      value: 0,
+    }),
+    []
+  );
 
   useEffect(() => {
     const scales = slideMeshes.current.map((mesh) => mesh.scale);
@@ -29,10 +34,10 @@ export function useProjectSelectionAnimation(
           (a * Math.PI) / 180
         );
 
-        camAngle = a;
+        camAngle.value = a;
       },
       get rotation() {
-        return camAngle;
+        return camAngle.value;
       },
       set offsetY(offset: number) {
         camera.setViewOffset(w, h, camera.view?.offsetX || 0, offset, w, h);

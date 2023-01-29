@@ -1,8 +1,8 @@
 import { useResponsiveCameraFOV } from "@/components/hooks/useResponsiveCameraFOV";
-import { ProjectProps } from "@/data/projectList";
+import { projectList, ProjectProps } from "@/data/projectList";
 import { PerspectiveCamera } from "@react-three/drei";
 import { Splide } from "@splidejs/react-splide";
-import { MutableRefObject, useMemo, useRef } from "react";
+import { createElement, MutableRefObject, useMemo, useRef } from "react";
 import { Mesh } from "three";
 import { useProjectMouseAnimation } from "./hooks/useProjectMouseAnimation";
 import { useProjectSelectionAnimation } from "./hooks/useProjectSelectionAnimation";
@@ -47,13 +47,19 @@ function ProjectsThreeScene({
 
   return (
     <>
+      <hemisphereLight args={["#9AF", "#000"]} intensity={0.5} />
+      <ambientLight intensity={0.2} />
+      <directionalLight position={[1, 4, 2]} intensity={1} />
       <PerspectiveCamera makeDefault position={[0, 0, cameraDistance]} />
       {slides.map((_slide, i) => (
         <group key={i}>
-          <mesh ref={(el) => addSlideMeshesRef(el, i)}>
-            <boxGeometry args={[1.6, 1.2, 0.05]} />
-            <meshNormalMaterial />
-          </mesh>
+          {projectList[i] ? (
+            createElement(projectList[i].modelComponent, {
+              ref: (el: any) => addSlideMeshesRef(el, i),
+            })
+          ) : (
+            <object3D />
+          )}
         </group>
       ))}
     </>

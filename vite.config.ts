@@ -10,4 +10,5 @@ export default defineConfig({
     host: true,
   },
   plugins: [react()],
+  assetsInclude: ["**/*.gltf"],
 });

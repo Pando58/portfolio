@@ -1,4 +1,5 @@
 import Osmium3D from "@/components/Projects/ProjectsThreeScene/models/Osmium3D";
+import Uaeval3D from "@/components/Projects/ProjectsThreeScene/models/Uaeval3D";
 import { ForwardRefExoticComponent } from "react";
 
 export const projectList: ProjectProps[] = [
@@ -14,7 +15,7 @@ export const projectList: ProjectProps[] = [
     description:
       "An evaluation system for <a href='https://unialvaedison.edu.mx/' target='_blank' class='text-sky-700 italic'>Universidad Alva Edison</a> where students qualify teachers and administrative staff in different categories, in order to analyze the data and improve the quality of the institution.",
     repo_url: "https://github.com/Pando58/uaeval",
-    modelComponent: Osmium3D,
+    modelComponent: Uaeval3D,
   },
   {
     name: "Guitar Trainer",

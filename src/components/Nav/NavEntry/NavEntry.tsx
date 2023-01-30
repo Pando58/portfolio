@@ -19,9 +19,11 @@ function NavEntry({
   }
 
   return (
-    <a onClick={onClick} href={path}>
-      {children}
-    </a>
+    <li>
+      <a onClick={onClick} href={path}>
+        {children}
+      </a>
+    </li>
   );
 }
 

@@ -1,6 +1,6 @@
-import { Canvas } from "@react-three/fiber";
 import { useRef } from "react";
 import BgScene from "./BgScene";
+import { useWelcomeAnimation } from "./hooks/useWelcomeAnimation";
 
 function Welcome({
   currentSection,
@@ -11,11 +11,11 @@ function Welcome({
 }) {
   const titlesContainer = useRef<HTMLDivElement>(null!);
 
-  /* const { playRubik } = useWelcomeAnimation(
+  const { playRubik } = useWelcomeAnimation(
     currentSection,
     sectionPlaying,
     titlesContainer
-  ); */
+  );
 
   return (
     <section
@@ -26,9 +26,7 @@ function Welcome({
     >
       {/* <Rubik play={playRubik} /> */}
       <div className="absolute inset-0">
-        <Canvas>
-          <BgScene />
-        </Canvas>
+        <BgScene />
       </div>
       <div
         ref={titlesContainer}

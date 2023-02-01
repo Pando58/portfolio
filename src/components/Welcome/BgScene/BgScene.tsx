@@ -67,8 +67,8 @@ function BgSceneContent() {
           contrast={-0.1} // contrast: min -1, max: 1
         />
         <ChromaticAberration
-          blendFunction={BlendFunction.NORMAL} // blend mode
-          offset={new Vector2(0.001, 0.001)} // color offset
+          blendFunction={BlendFunction.NORMAL}
+          offset={new Vector2(0.001, 0.001)}
         />
         <Vignette
           blendFunction={BlendFunction.NORMAL}
@@ -111,13 +111,13 @@ function BgSceneContent() {
           u_noiseStrength={0.4}
           u_frequency={14}
           u_amplitude={2}
-          u_colorIntensity={0.8}
-          u_colorOffset={0.4}
+          u_colorIntensity={0.8} // u_colorIntensity={0.8}
+          u_colorOffset={0.5} // u_colorOffset={0.4}
           u_colorPalette={[
-            [0.2, 0.7, 0.4], // [0.2, 0.7, 0.4],
-            [0.6, 0.9, 0.3], // [0.6, 0.9, 0.2],
-            [0.5, 0.8, 1.0], // [0.6, 0.8, 0.7],
-            [0.5, 0.1, 0.0], // [0.5, 0.1, 0.0],
+            [0.5, 0.5, 0.5], // [0.2, 0.7, 0.4], // [0.2, 0.7, 0.4],
+            [0.5, 0.5, 0.5], // [0.6, 0.9, 0.3], // [0.6, 0.9, 0.2],
+            [1.0, 1.0, 1.0], // [0.5, 0.8, 1.0], // [0.6, 0.8, 0.7],
+            [0.0, 0.05, 0.08], // [0.5, 0.1, 0.0], // [0.5, 0.1, 0.0],
           ]}
         ></Blob>
         <Blob
@@ -127,13 +127,13 @@ function BgSceneContent() {
           u_noiseStrength={0.2}
           u_frequency={10}
           u_amplitude={2}
-          u_colorIntensity={2.4}
-          u_colorOffset={-2}
+          u_colorIntensity={1.6} // u_colorIntensity={2.4}
+          u_colorOffset={0.6} // u_colorOffset={-2}
           u_colorPalette={[
-            [0.2, 0.7, 0.4],
-            [0.6, 0.9, 0.3],
-            [0.6, 0.8, 0.7],
-            [0.5, 0.1, 0.0],
+            [0.5, 0.5, 0.5], // [0.2, 0.7, 0.4],
+            [0.5, 0.5, 0.5], // [0.6, 0.9, 0.3],
+            [1.0, 1.0, 1.0], // [0.6, 0.8, 0.7],
+            [0.1, 0.05, 0.02], // [0.5, 0.1, 0.0],
           ]}
         ></Blob>
         <Blob
@@ -143,13 +143,13 @@ function BgSceneContent() {
           u_noiseStrength={0.04}
           u_frequency={20}
           u_amplitude={2}
-          u_colorIntensity={8}
-          u_colorOffset={-2.2}
+          u_colorIntensity={8} // u_colorIntensity={8}
+          u_colorOffset={0.8} // u_colorOffset={-2.2}
           u_colorPalette={[
-            [0.3, 0.6, 0.4],
-            [0.6, 0.9, 0.3],
-            [0.6, 0.8, 0.7],
-            [0.5, 0.1, 0.0],
+            [0.5, 0.5, 0.5], // [0.3, 0.6, 0.4],
+            [0.5, 0.5, 0.5], // [0.6, 0.9, 0.3],
+            [1.0, 1.0, 1.0], // [0.6, 0.8, 0.7],
+            [0.0, 0.05, 0.08], // [0.5, 0.1, 0.0],
           ]}
         ></Blob>
       </Bounds>

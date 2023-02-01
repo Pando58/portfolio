@@ -1,6 +1,7 @@
 import { FaCodepen, FaGithub } from "react-icons/fa";
 import { sections } from "../../data/sectionRoutes";
 import LangText from "../LangText";
+import { langHandler } from "../language/langHandler";
 import NavEntry from "./NavEntry";
 
 function Nav({ theme }: { theme: string }) {
@@ -27,14 +28,15 @@ function Nav({ theme }: { theme: string }) {
       </ul>
       <ul
         className={`
-          p-2 pb-2 uppercase font-bold text-2xl tracking-wider flex space-y-4 pointer-events-auto
+          p-2 pb-2 flex flex-col text-2xl space-y-4 pointer-events-auto
           ${theme === "dark" ? "text-zinc-100" : "text-zinc-800"}
         `}
-        style={{
-          writingMode: "vertical-rl",
-          textOrientation: "mixed",
-        }}
       >
+        <li className="mb-4 text-sm text-center font-medium">
+          <button onClick={() => langHandler.swapLang()}>
+            <LangText en="EN" es="ES" />
+          </button>
+        </li>
         <li>
           <a href="https://github.com/Pando58" target="_blank">
             <FaGithub />

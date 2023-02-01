@@ -20,7 +20,7 @@ export const langHandler = ((): LangHandler => {
         listeners = listeners.filter((i) => i === fn);
       }
     },
-    changeLang: () => {
+    swapLang: () => {
       activeLang = activeLang === "en" ? "es" : "en";
 
       for (const fn of listeners) {
@@ -36,5 +36,5 @@ type LangHandler = {
   getActiveLang: () => Lang;
   onChange: (fn: (lang: Lang) => void) => void;
   clear: (fn: (lang: Lang) => void) => void;
-  changeLang: () => void;
+  swapLang: () => void;
 };

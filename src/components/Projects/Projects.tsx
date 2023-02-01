@@ -6,7 +6,7 @@ import { useProjectsAnimation } from "./hooks/useProjectsAnimation";
 import { useSelectedProject } from "./hooks/useSelectedProject";
 import { useSliderChange } from "./hooks/useSliderChange";
 import ProjectsThreeScene from "./ProjectsThreeScene";
-import ProjectView from "./ProjectView/ProjectView";
+import ProjectView from "./ProjectView";
 import SliderView from "./SliderView";
 
 function Projects({

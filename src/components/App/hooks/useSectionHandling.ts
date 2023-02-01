@@ -1,3 +1,4 @@
+import { langHandler } from "@/components/language/langHandler";
 import { sections } from "@/data/sectionRoutes";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -18,6 +19,14 @@ export function useSectionHandling() {
   const [transitionPlaying, setTransitionPlaying] = useState(false);
 
   function onHistoryChange() {
+    if (!new URLSearchParams(location.search).has("lang")) {
+      history.replaceState(
+        history.state,
+        "",
+        `${location.pathname}?lang=${langHandler.getActiveLang()}`
+      );
+    }
+
     setTransitionPlaying(true);
   }
 
@@ -30,7 +39,7 @@ export function useSectionHandling() {
         theme: pathSection[1].theme,
       },
       "",
-      pathSection[1].path
+      `${pathSection[1].path}?lang=${langHandler.getActiveLang()}`
     );
 
     switchSection();

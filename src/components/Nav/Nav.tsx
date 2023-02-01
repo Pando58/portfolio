@@ -1,5 +1,6 @@
 import { FaCodepen, FaGithub } from "react-icons/fa";
 import { sections } from "../../data/sectionRoutes";
+import LangText from "../LangText";
 import NavEntry from "./NavEntry";
 
 function Nav({ theme }: { theme: string }) {
@@ -17,7 +18,10 @@ function Nav({ theme }: { theme: string }) {
       >
         {[...sections].map(([id, { path, name, theme }]) => (
           <NavEntry sec={id} path={path} theme={theme} key={id}>
-            {name}
+            <LangText //
+              en={name.en}
+              es={name.es}
+            />
           </NavEntry>
         ))}
       </ul>

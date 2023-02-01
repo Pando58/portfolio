@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import LangText from "../LangText";
 import BgScene from "./BgScene";
 import { useWelcomeAnimation } from "./hooks/useWelcomeAnimation";
 
@@ -39,7 +40,12 @@ function Welcome({
           <span className="inline-block">Pando</span>
         </h2>
         <h3 className="mt-4 overflow-hidden text-lg sm:text-xl lg:text-2xl xl:text-3xl tracking-widest uppercase text-slate-300">
-          <span className="inline-block">web developer</span>
+          <span className="inline-block">
+            <LangText //
+              en="web developer"
+              es="desarrollador web"
+            />
+          </span>
         </h3>
       </div>
     </section>

@@ -1,10 +1,32 @@
+import { Lang } from "@/components/language/langHandler";
+
 export const sections = new Map<number, SectionProps>([
-  [0, { path: "/", name: "Home", theme: "dark" }],
-  [1, { path: "/projects", name: "Projects", theme: "light" }],
+  [
+    0,
+    {
+      path: "/",
+      name: {
+        en: "Home",
+        es: "Inicio",
+      },
+      theme: "dark",
+    },
+  ],
+  [
+    1,
+    {
+      path: "/projects",
+      name: {
+        en: "Projects",
+        es: "Proyectos",
+      },
+      theme: "light",
+    },
+  ],
 ]);
 
 interface SectionProps {
   path: string;
-  name: string;
+  name: Record<Lang, string>;
   theme: string;
 }

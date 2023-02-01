@@ -23,6 +23,12 @@ export const langHandler = ((): LangHandler => {
     swapLang: () => {
       activeLang = activeLang === "en" ? "es" : "en";
 
+      history.replaceState(
+        history.state,
+        "",
+        `${location.pathname}?lang=${activeLang}`
+      );
+
       for (const fn of listeners) {
         fn(activeLang);
       }

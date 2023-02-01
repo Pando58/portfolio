@@ -51,7 +51,7 @@ function ProjectView({
           <FaArrowLeft />
         </button>
       </div>
-      <div className="w-full p-12 xl:h-full xl:flex">
+      <div className="w-full max-h-screen overflow-y-hidden p-12 xl:h-full xl:flex">
         <div className="xl:basis-2/6 shrink flex flex-col justify-center">
           <div className="relative min-h-[12rem] text-center">
             <div className="absolute bottom-4 left-0 right-0">

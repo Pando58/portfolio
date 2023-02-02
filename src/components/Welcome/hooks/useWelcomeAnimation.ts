@@ -16,7 +16,7 @@ export function useWelcomeAnimation(
     const ctx = gsap.context(() => {
       // Reset animations if not playing
       if (!play) {
-        gsap.set("span", {
+        gsap.set("[data-anim]", {
           y: "95%",
         });
 
@@ -27,7 +27,7 @@ export function useWelcomeAnimation(
 
       // Main animation
       gsap.fromTo(
-        "span",
+        "[data-anim]",
         {
           y: "95%",
         },

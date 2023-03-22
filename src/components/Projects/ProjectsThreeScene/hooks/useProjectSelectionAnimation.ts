@@ -1,5 +1,5 @@
 import { gsap, Power4 } from "gsap";
-import { Mesh, Vector3 } from "three";
+import { Group, Vector3 } from "three";
 
 import { ProjectProps } from "@/data/projectList";
 import { useThree } from "@react-three/fiber";
@@ -7,7 +7,7 @@ import { MutableRefObject, useEffect, useMemo } from "react";
 
 export function useProjectSelectionAnimation(
   play: boolean,
-  slideMeshes: MutableRefObject<Mesh[]>,
+  slideMeshes: MutableRefObject<Group[]>,
   selectedProject: ProjectProps | null,
   selectedProjectIndex: number
 ) {

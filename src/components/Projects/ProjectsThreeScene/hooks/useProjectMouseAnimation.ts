@@ -1,10 +1,10 @@
 import { ProjectProps } from "@/data/projectList";
 import { gsap } from "gsap";
 import { MutableRefObject, useEffect, useMemo, useState } from "react";
-import { Euler, Mesh } from "three";
+import { Euler, Group } from "three";
 
 export function useProjectMouseAnimation(
-  slideMeshes: MutableRefObject<Mesh[]>,
+  slideMeshes: MutableRefObject<Group[]>,
   selectedProject: ProjectProps | null,
   selectedProjectIndex: number
 ) {
@@ -17,7 +17,7 @@ export function useProjectMouseAnimation(
     []
   );
 
-  let [lastMesh, setLastMesh] = useState<Mesh | null>(null);
+  let [lastMesh, setLastMesh] = useState<Group | null>(null);
 
   useEffect(() => {
     const mesh = slideMeshes.current[selectedProjectIndex];

@@ -2,12 +2,13 @@ import { useResponsiveCameraFOV } from "@/components/hooks/useResponsiveCameraFO
 import { projectList, ProjectProps } from "@/data/projectList";
 import { PerspectiveCamera } from "@react-three/drei";
 import { Splide } from "@splidejs/react-splide";
-import { createElement, MutableRefObject, useMemo, useRef } from "react";
-import { Mesh } from "three";
+import { MutableRefObject, useMemo, useRef } from "react";
+import { Group } from "three";
 import { useProjectMouseAnimation } from "./hooks/useProjectMouseAnimation";
 import { useProjectSelectionAnimation } from "./hooks/useProjectSelectionAnimation";
 import { useSlidersIntroAnimation } from "./hooks/useSlidersIntroAnimation";
 import { useSyncThreeSliders } from "./hooks/useSyncThreeSliders";
+import Monitor from "./models/Monitor";
 
 function ProjectsThreeScene({
   splideRef,
@@ -22,7 +23,7 @@ function ProjectsThreeScene({
 }) {
   const cameraDistance = 4;
 
-  const slideMeshes = useRef<Mesh[]>([]);
+  const slideMeshes = useRef<Group[]>([]);
 
   useResponsiveCameraFOV(40, 30);
   useSyncThreeSliders(cameraDistance, splideRef, slideMeshes);
@@ -39,7 +40,7 @@ function ProjectsThreeScene({
     return splideRef.current.splide?.Components.Slides.get() || [];
   }, []);
 
-  function addSlideMeshesRef(el: Mesh | null, index: number) {
+  function addSlideMeshesRef(el: Group | null, index: number) {
     if (!el) return;
 
     slideMeshes.current[index] = el;
@@ -54,9 +55,13 @@ function ProjectsThreeScene({
       {slides.map((_slide, i) => (
         <group key={i}>
           {projectList[i] ? (
-            createElement(projectList[i].modelComponent, {
+            <Monitor
+              videoSrc={projectList[i].video}
+              ref={(el) => addSlideMeshesRef(el, i)}
+            />
+            /* createElement(Monitor, {
               ref: (el: any) => addSlideMeshesRef(el, i),
-            })
+            }) */
           ) : (
             <object3D />
           )}

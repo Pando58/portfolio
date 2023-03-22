@@ -3,12 +3,12 @@ import { useWindowSize } from "@/components/hooks/useWindowSize";
 import { useFrame } from "@react-three/fiber";
 import { Splide } from "@splidejs/react-splide";
 import { MutableRefObject, useMemo } from "react";
-import { Mesh } from "three";
+import { Group } from "three";
 
 export function useSyncThreeSliders(
   cameraDistance: number,
   splideRef: MutableRefObject<Splide>,
-  slideMeshes: MutableRefObject<Mesh[]>
+  slideMeshes: MutableRefObject<Group[]>
 ) {
   const { windowW } = useWindowSize();
   const { visibleW, visibleH } = useThreeVisibleSize(cameraDistance);

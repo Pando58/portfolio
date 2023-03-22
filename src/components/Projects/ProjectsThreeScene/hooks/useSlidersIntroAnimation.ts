@@ -1,10 +1,10 @@
 import { Expo, gsap } from "gsap";
 import { MutableRefObject, useLayoutEffect } from "react";
-import { Mesh } from "three";
+import { Group } from "three";
 
 export function useSlidersIntroAnimation(
   play: boolean,
-  slideMeshes: MutableRefObject<Mesh[]>
+  slideMeshes: MutableRefObject<Group[]>
 ) {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {

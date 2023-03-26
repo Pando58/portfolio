@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Lang, langHandler } from "../language/langHandler";
+import { Lang, langHandler } from "@/lib/langHandler";
 
 function LangText(props: Record<Lang, string>) {
   const [text, setText] = useState<string>(props[langHandler.getActiveLang()]);

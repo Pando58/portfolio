@@ -1,4 +1,4 @@
-import { Lang } from "@/components/language/langHandler";
+import { Lang } from "@/lib/langHandler";
 
 export const sections = new Map<number, SectionProps>([
   [

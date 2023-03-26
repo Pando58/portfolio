@@ -1,5 +1,5 @@
-import { langHandler } from "@/components/language/langHandler";
 import { sections } from "@/data/sectionRoutes";
+import { langHandler } from "@/lib/langHandler";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 export function useSectionHandling() {

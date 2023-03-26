@@ -1,7 +1,7 @@
 import { FaCodepen, FaGithub } from "react-icons/fa";
 import { sections } from "../../data/sectionRoutes";
 import LangText from "../LangText";
-import { langHandler } from "../language/langHandler";
+import { langHandler } from "@/lib/langHandler";
 import NavEntry from "./NavEntry";
 
 function Nav({ theme }: { theme: string }) {

@@ -59,9 +59,6 @@ function ProjectsThreeScene({
               videoSrc={projectList[i].video}
               ref={(el) => addSlideMeshesRef(el, i)}
             />
-            /* createElement(Monitor, {
-              ref: (el: any) => addSlideMeshesRef(el, i),
-            }) */
           ) : (
             <object3D />
           )}

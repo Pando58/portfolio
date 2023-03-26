@@ -1,4 +1,4 @@
-const langs = ['en', 'es'] as const;
+const langs = ["en", "es"] as const;
 
 export type Lang = typeof langs[number];
 

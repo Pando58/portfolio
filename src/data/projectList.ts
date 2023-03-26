@@ -1,7 +1,7 @@
-import osmiumVideo from '@/assets/videos/osmium.mp4'
-import spotifyVideo from '@/assets/videos/spotify.mp4'
-import revistaVideo from '@/assets/videos/revista.mp4'
-import guitarTrainerVideo from '@/assets/videos/guitarTrainer.mp4'
+import guitarTrainerVideo from "@/assets/videos/guitarTrainer.mp4";
+import osmiumVideo from "@/assets/videos/osmium.mp4";
+import revistaVideo from "@/assets/videos/revista.mp4";
+import spotifyVideo from "@/assets/videos/spotify.mp4";
 
 export const projectList: ProjectProps[] = [
   {

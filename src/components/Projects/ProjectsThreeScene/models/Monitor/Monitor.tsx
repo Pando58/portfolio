@@ -27,70 +27,74 @@ type GLTFResult = GLTF &
     };
   };
 
-export default forwardRef((props: JSX.IntrinsicElements["group"] & { videoSrc: string }, ref: ForwardedRef<Group>) => {
-  const { nodes, materials } = useGLTF(monitor) as unknown as GLTFResult;
+export default forwardRef(
+  (
+    props: JSX.IntrinsicElements["group"] & { videoSrc: string },
+    ref: ForwardedRef<Group>
+  ) => {
+    const { nodes, materials } = useGLTF(monitor) as unknown as GLTFResult;
 
-  return (
-    <group {...props} ref={ref} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Back.geometry}
-        material={materials.Plastic}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Base.geometry}
-        material={materials.Plastic}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.MonitorOutside.geometry}
-        material={materials.Plastic}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.MonitorScreen.geometry}
-      // material={materials.MonitorScreen}
-      >
-        <VideoMaterial url={props.videoSrc} />
-      </mesh>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Button1.geometry}
-        material={materials.Button}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Button2.geometry}
-        material={materials.Button}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Button3.geometry}
-        material={materials.Button}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Button4.geometry}
-        material={materials.Button}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.ButtonPower.geometry}
-        material={materials.Button}
-      />
-    </group>
-  );
-}
+    return (
+      <group {...props} ref={ref} dispose={null}>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Back.geometry}
+          material={materials.Plastic}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Base.geometry}
+          material={materials.Plastic}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.MonitorOutside.geometry}
+          material={materials.Plastic}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.MonitorScreen.geometry}
+          // material={materials.MonitorScreen}
+        >
+          <VideoMaterial url={props.videoSrc} />
+        </mesh>
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Button1.geometry}
+          material={materials.Button}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Button2.geometry}
+          material={materials.Button}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Button3.geometry}
+          material={materials.Button}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Button4.geometry}
+          material={materials.Button}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.ButtonPower.geometry}
+          material={materials.Button}
+        />
+      </group>
+    );
+  }
 );
 
 useGLTF.preload(monitor);

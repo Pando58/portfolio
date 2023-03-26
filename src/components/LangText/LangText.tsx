@@ -1,22 +1,13 @@
-import { useEffect, useState } from "react";
-import { Lang, langHandler } from "@/lib/langHandler";
+import { Lang } from "@/lib/langHandler";
+import LangComponent from "./LangComponent";
 
 function LangText(props: Record<Lang, string>) {
-  const [text, setText] = useState<string>(props[langHandler.getActiveLang()]);
-
-  useEffect(() => {
-    const onChange = (lang: Lang) => {
-      setText(props[lang]);
-    };
-
-    langHandler.onChange(onChange);
-
-    return () => {
-      langHandler.clear(onChange);
-    };
-  }, []);
-
-  return <>{text}</>;
+  return (
+    <LangComponent
+      en={props.en} //
+      es={props.es}
+    />
+  );
 }
 
 export default LangText;

@@ -1,3 +1,7 @@
+const langs = ['en', 'es'] as const;
+
+export type Lang = typeof langs[number];
+
 export const langHandler = ((): LangHandler => {
   let activeLang: Lang = "en";
   let listeners: ((lang: Lang) => void)[] = [];
@@ -5,7 +9,7 @@ export const langHandler = ((): LangHandler => {
   const urlLang = new URLSearchParams(location.search).get("lang");
 
   if (urlLang) {
-    if (["en", "es"].includes(urlLang)) {
+    if ((langs as readonly string[]).includes(urlLang)) {
       activeLang = urlLang as Lang;
     }
   }
@@ -35,8 +39,6 @@ export const langHandler = ((): LangHandler => {
     },
   };
 })();
-
-export type Lang = "en" | "es";
 
 type LangHandler = {
   getActiveLang: () => Lang;

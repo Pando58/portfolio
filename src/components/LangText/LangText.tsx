@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Lang, langHandler } from "../language/langHandler";
 
-function LangText(props: { en: string; es: string }) {
+function LangText(props: Record<Lang, string>) {
   const [text, setText] = useState<string>(props[langHandler.getActiveLang()]);
 
   useEffect(() => {

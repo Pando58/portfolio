@@ -21,7 +21,7 @@ function ProjectName({
   return (
     <div ref={containerRef} className="relative mt-12">
       <h2 className="overflow-hidden text-zinc-800 font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center absolute inset-0">
-        <span className="inline-block" data-anim-first>
+        <span className="inline-block leading-tight" data-anim-first>
           <LangText
             en={prevName.en} //
             es={prevName.es}
@@ -29,7 +29,11 @@ function ProjectName({
         </span>
       </h2>
       <h2 className="overflow-hidden text-zinc-800 font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center">
-        <span className="inline-block" data-anim-intro data-anim-second>
+        <span
+          className="inline-block leading-tight"
+          data-anim-intro
+          data-anim-second
+        >
           <LangText
             en={activeName.en} //
             es={activeName.es}

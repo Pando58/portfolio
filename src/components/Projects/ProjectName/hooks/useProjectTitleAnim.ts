@@ -9,8 +9,14 @@ export function useProjectTitleAnim(
 ) {
   const tlRef = useRef<gsap.core.Timeline>();
 
-  const [prevName, setPrevName] = useState("");
-  const [activeName, setActiveName] = useState("");
+  const [prevName, setPrevName] = useState<ProjectProps["name"]>({
+    en: "",
+    es: "",
+  });
+  const [activeName, setActiveName] = useState<ProjectProps["name"]>({
+    en: "",
+    es: "",
+  });
 
   useLayoutEffect(() => {
     setPrevName(activeName);

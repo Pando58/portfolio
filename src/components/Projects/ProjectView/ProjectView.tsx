@@ -1,7 +1,10 @@
+import LangText from "@/components/LangText";
+import LangComponent from "@/components/LangText/LangComponent";
 import { ProjectProps } from "@/data/projectList";
 import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
 import { FaArrowLeft, FaGithub } from "react-icons/fa";
+import ProjectDescription from "./ProjectDescription";
 
 function ProjectView({
   project,
@@ -56,7 +59,10 @@ function ProjectView({
           <div className="relative min-h-[12rem] text-center">
             <div className="absolute bottom-4 left-0 right-0">
               <h2 className="text-center max-w-md mx-auto font-sans-semiexpanded font-bold text-4xl xl:text-5xl">
-                {project.name}
+                <LangText
+                  en={project.name.en} //
+                  es={project.name.es} //
+                />
               </h2>
             </div>
           </div>
@@ -65,10 +71,10 @@ function ProjectView({
             <div className="pt-[56.25%]" />
           </div>
           <div className="px-4 pt-4 max-w-md mx-auto min-h-[14rem]">
-            <p
-              className="text-justify font-sans xl:text-lg"
-              dangerouslySetInnerHTML={{ __html: project.description }}
-            ></p>
+            <LangComponent
+              en={<ProjectDescription html={project.description.en} />}
+              es={<ProjectDescription html={project.description.es} />}
+            />
             <ul className="mt-6 text-2xl flex">
               <li>
                 <a href={project.repo_url} target="_blank">

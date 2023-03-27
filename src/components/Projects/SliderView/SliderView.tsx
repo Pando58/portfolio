@@ -1,3 +1,4 @@
+import LangText from "@/components/LangText";
 import { ProjectProps } from "@/data/projectList";
 import { Splide } from "@splidejs/react-splide";
 import { gsap } from "gsap";
@@ -51,7 +52,10 @@ function SliderView({
       <div className="flex-1 text-center">
         <h2 className="overflow-hidden text-zinc-600 text-4xl mt-16 font-sans-semiexpanded">
           <span className="inline-block" data-anim-intro>
-            PROJECTS
+            <LangText
+              en="PROJECTS" //
+              es="PROYECTOS"
+            />
           </span>
         </h2>
       </div>

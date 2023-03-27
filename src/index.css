@@ -50,6 +50,12 @@
   font-weight: 900;
 }
 
+@layer components {
+  a.link-highlight {
+    @apply text-cyan-700 font-semibold italic;
+  }
+}
+
 /* :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;

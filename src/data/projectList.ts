@@ -11,10 +11,10 @@ export const projectList: ProjectProps[] = [
       es: "Spotify Player",
     },
     description: {
-      en: "description",
-      es: "description",
+      en: "A Spotify client site that allows to view and control playlists and tracks through authentication using the Spotify API, including playback controls and dynamic track information.",
+      es: "Un cliente para Spotify que permite ver y controlar listas de reproducción por medio de autenticación utilizando la API de Spotify, mostrando controles de reproducción e información dinámica de sus canciones.",
     },
-    repo_url: "https://github.com/Pando58/uaeval",
+    repo_url: "https://github.com/Pando58/spotify-player",
     video: spotifyVideo,
   },
   {
@@ -23,8 +23,8 @@ export const projectList: ProjectProps[] = [
       es: "Osmium",
     },
     description: {
-      en: "description",
-      es: "description",
+      en: "A music creation tool that allows to procedurally generate melodies and rhythms through node graphs, allowing for easy creation of polyrhythmic music and unique, dynamic compositions.",
+      es: "Una herramienta de creación musical que permite generar melodias y ritmos por medio de diagramas de nodos, permitiendo crear fácilmente música polirrítmica, así como únicas composiciones dinámicas.",
     },
     repo_url: "https://github.com/Pando58/osmium",
     video: osmiumVideo,
@@ -32,13 +32,13 @@ export const projectList: ProjectProps[] = [
   {
     name: {
       en: "UAE School Handbook Site",
-      es: "UAE School Handbook Site",
+      es: "Sitio web Revista UAE",
     },
     description: {
-      en: "description",
-      es: "description",
+      en: "<a href='https://unialvaedison.edu.mx/' target='_blank' class='link-highlight'>Universidad Alva Edison</a>'s online handbook site showcasing multimedia content such as images, videos and 360° photos related to the university's history and other features.",
+      es: "Página web para la revista de la <a href='https://unialvaedison.edu.mx/' target='_blank' class='link-highlight'>Universidad Alva Edison</a>, mostrando contenido multimedia como imágenes, videos y fotografías 360° acerca de la historia y otros datos de la universidad.",
     },
-    repo_url: "https://github.com/Pando58/uaeval",
+    repo_url: "https://github.com/Pando58/revista-uae",
     video: revistaVideo,
   },
   {
@@ -47,8 +47,8 @@ export const projectList: ProjectProps[] = [
       es: "Guitar Trainer",
     },
     description: {
-      en: "description",
-      es: "description",
+      en: "A music learning tool that focuses on improving the user's knowledge of musical intervals. As the user progresses, the tool dynamically generates new intervals, and allows the user to configure it to its liking.",
+      es: "Una herramienta de aprendizaje musical que se enfoca en mejorar el conocimiento de los intervalos musicales del usuario. Conforme este progresa, la herramienta genera nuevos intervalos, y permite configurar la herramienta a su gusto.",
     },
     repo_url: "https://github.com/Pando58/guitar-trainer",
     video: guitarTrainerVideo,

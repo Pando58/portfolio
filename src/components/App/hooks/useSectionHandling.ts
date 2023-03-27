@@ -2,6 +2,8 @@ import { sections } from "@/data/sectionRoutes";
 import { langHandler } from "@/lib/langHandler";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
+const basePath = "/portfolio";
+
 export function useSectionHandling() {
   const pathSection = useMemo(() => {
     const secs = [...sections];
@@ -23,7 +25,7 @@ export function useSectionHandling() {
       history.replaceState(
         history.state,
         "",
-        `${location.pathname}?lang=${langHandler.getActiveLang()}`
+        `${basePath}${location.pathname}?lang=${langHandler.getActiveLang()}`
       );
     }
 
@@ -39,7 +41,7 @@ export function useSectionHandling() {
         theme: pathSection[1].theme,
       },
       "",
-      `${pathSection[1].path}?lang=${langHandler.getActiveLang()}`
+      `${basePath}${pathSection[1].path}?lang=${langHandler.getActiveLang()}`
     );
 
     switchSection();

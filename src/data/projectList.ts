@@ -32,7 +32,7 @@ export const projectList: ProjectProps[] = [
   {
     name: {
       en: "UAE School Handbook Site",
-      es: "Sitio web Revista UAE",
+      es: "Página Revista UAE",
     },
     description: {
       en: "<a href='https://unialvaedison.edu.mx/' target='_blank' class='link-highlight'>Universidad Alva Edison</a>'s online handbook site showcasing multimedia content such as images, videos and 360° photos related to the university's history and other features.",

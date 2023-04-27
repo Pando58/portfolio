@@ -18,6 +18,8 @@ export const langHandler = ((): LangHandler => {
     getActiveLang: () => activeLang,
     onChange: (fn: (lang: Lang) => void) => {
       listeners = [...listeners, fn];
+
+      fn(activeLang);
     },
     clear: (fn: (lang: Lang) => void) => {
       if (listeners.includes(fn)) {

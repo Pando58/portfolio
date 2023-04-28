@@ -19,6 +19,19 @@ export const projectList: ProjectProps[] = [
   },
   {
     name: {
+      en: "UAE School Handbook Site",
+      es: "Página Revista UAE",
+    },
+    description: {
+      en: "<a href='https://unialvaedison.edu.mx/' target='_blank' class='link-highlight'>Universidad Alva Edison</a>'s online handbook site showcasing multimedia content such as images, videos and 360° photos related to the university's history and other features.",
+      es: "Página web para la revista de la <a href='https://unialvaedison.edu.mx/' target='_blank' class='link-highlight'>Universidad Alva Edison</a>, mostrando contenido multimedia como imágenes, videos y fotografías 360° acerca de la historia y otros datos de la universidad.",
+    },
+    repo_url: "https://github.com/Pando58/revista-uae",
+    site_url: "https://revista.unialvaedison.edu.mx",
+    video: revistaVideo,
+  },
+  {
+    name: {
       en: "Osmium",
       es: "Osmium",
     },
@@ -31,18 +44,6 @@ export const projectList: ProjectProps[] = [
   },
   {
     name: {
-      en: "UAE School Handbook Site",
-      es: "Página Revista UAE",
-    },
-    description: {
-      en: "<a href='https://unialvaedison.edu.mx/' target='_blank' class='link-highlight'>Universidad Alva Edison</a>'s online handbook site showcasing multimedia content such as images, videos and 360° photos related to the university's history and other features.",
-      es: "Página web para la revista de la <a href='https://unialvaedison.edu.mx/' target='_blank' class='link-highlight'>Universidad Alva Edison</a>, mostrando contenido multimedia como imágenes, videos y fotografías 360° acerca de la historia y otros datos de la universidad.",
-    },
-    repo_url: "https://github.com/Pando58/revista-uae",
-    video: revistaVideo,
-  },
-  {
-    name: {
       en: "Guitar Trainer",
       es: "Guitar Trainer",
     },
@@ -51,6 +52,7 @@ export const projectList: ProjectProps[] = [
       es: "Una herramienta de aprendizaje musical que se enfoca en mejorar el conocimiento de los intervalos musicales del usuario. Conforme este progresa, la herramienta genera nuevos intervalos, y permite configurar la herramienta a su gusto.",
     },
     repo_url: "https://github.com/Pando58/guitar-trainer",
+    site_url: "https://pando58.github.io/guitar-trainer",
     video: guitarTrainerVideo,
   },
 ];
@@ -59,5 +61,6 @@ export interface ProjectProps {
   name: Record<Lang, string>;
   description: Record<Lang, string>;
   repo_url: string;
+  site_url?: string;
   video: string;
 }

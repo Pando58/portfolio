@@ -3,7 +3,7 @@ import LangComponent from "@/components/LangText/LangComponent";
 import { ProjectProps } from "@/data/projectList";
 import { gsap } from "gsap";
 import { useLayoutEffect, useRef } from "react";
-import { FaArrowLeft, FaGithub } from "react-icons/fa";
+import { FaArrowLeft, FaGithub, FaGlobeAmericas } from "react-icons/fa";
 import ProjectDescription from "./ProjectDescription";
 
 function ProjectView({
@@ -58,7 +58,7 @@ function ProjectView({
         <div className="xl:basis-2/6 shrink flex flex-col justify-center">
           <div className="relative min-h-[12rem] text-center">
             <div className="absolute bottom-4 left-0 right-0">
-              <h2 className="text-center max-w-md mx-auto font-sans-semiexpanded font-bold text-4xl xl:text-5xl">
+              <h2 className="text-center max-w-md mx-auto text-slate-800 font-sans-semiexpanded font-bold text-4xl xl:text-5xl">
                 <LangText
                   en={project.name.en} //
                   es={project.name.es} //
@@ -70,17 +70,24 @@ function ProjectView({
           <div className="block xl:hidden w-full">
             <div className="pt-[56.25%]" />
           </div>
-          <div className="px-4 pt-4 max-w-md mx-auto min-h-[14rem]">
+          <div className="px-4 pt-4 max-w-md mx-auto min-h-[14rem] text-slate-800">
             <LangComponent
               en={<ProjectDescription html={project.description.en} />}
               es={<ProjectDescription html={project.description.es} />}
             />
-            <ul className="mt-6 text-2xl flex">
+            <ul className="mt-6 text-2xl text-slate-600 flex gap-3">
               <li>
                 <a href={project.repo_url} target="_blank">
                   <FaGithub />
                 </a>
               </li>
+              {project.site_url && (
+                <li>
+                  <a href={project.site_url} target="_blank">
+                    <FaGlobeAmericas />
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
           <div className="pt-4 pb-6"></div>
